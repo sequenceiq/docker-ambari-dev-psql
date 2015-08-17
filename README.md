@@ -6,7 +6,7 @@ While developing Ambari Server we may want to quickly set up a postgres database
 This will start an image based on postgres and pre-installed ambari database. The ambari database schema is created based on trunk.
 
 ```
-docker run -d -P --name amabri-dev-psql-trunk sequenceiq/docker-ambari-dev-psql
+docker run -d -P --name amabri-dev-psql-trunk sequenceiq/ambari-dev-psql
 ```
 
 Explanation of the parameters:
@@ -18,5 +18,17 @@ Explanation of the parameters:
 You can specify the ambari version number through the **VER** environment variable to initialize initialize the database shema from.
 
 ```
-docker run -d -P -e VER=<the desired version> --name amabri-dev-psql-trunk sequenceiq/docker-ambari-dev-psql
+docker run -d -P -e VER=<the desired version> --name amabri-dev-psql sequenceiq/ambari-dev-psql
+```
+
+## Starting the container with a preset Postgres port number
+
+```
+docker run -d -p 7002:5432 --name amabri-dev-psql-trunk sequenceiq/ambari-dev-psql
+```
+
+## Connecting to the database from outside the container
+
+```
+psql -h $(boot2docker ip) -p <port number the Postgres port 5432 is exposed to> -U ambari -d ambari
 ```
