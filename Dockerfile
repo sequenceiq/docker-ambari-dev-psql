@@ -13,7 +13,7 @@ ENV POSTGRES_DB       ambari
 ENV POSTGRES_USER     ambari
 
 # ambari database user password
-#ENV POSTGRES_PASSWORD bigdata
+ENV POSTGRES_PASSWORD bigdata
 
 ENV VER   trunk
 
